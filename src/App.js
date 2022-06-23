@@ -1,23 +1,70 @@
-import logo from './logo.svg';
 import './App.css';
 
+import LoginButton from './components/Login'
+import LogoutButton from './components/Logout'
+import { useEffect } from 'react'
+import { useState } from 'react';
+import { gapi } from 'gapi-script'
+import Card from 'react-bootstrap/Card';
+
+const clientId = '286213407093-s07fd7a3l9hoddsakohpi73nl1k1pbsp.apps.googleusercontent.com'
+
 function App() {
+  const [isLogin, setLogin] = useState(false);
+
+  const [data, setUserData] = useState("");
+
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    }
+
+    gapi.load('client:auth2', start)
+  })
+
+  const setIsLogin = (data) => {
+
+    setLogin(data);
+
+    setUserData(JSON.parse(localStorage.getItem('userDetails')))
+    console.log(setUserData)
+  }
+
+
+  const setIsLogout = (data) => {
+    setIsLogin(data);
+
+    console.log(data)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      {
+        isLogin ? <div id="userData">
+          <h1 className='mb-4'>Example of Google Login</h1>
+          <div className='container mb-2' style={{marginLeft:'35%'}}>
+          <Card style={{ width: '20rem',height:'15rem',backgroundColor:'grey' }}>
+            <Card.Body className="mt-5">
+              <Card.Title style={{color:"yellow"}}><b>Welcome {data.name} ....!!</b></Card.Title>
+              <Card.Text style={{color:"blue"}}>
+                <b>Email:{data.email}</b>
+              </Card.Text>
+              
+            </Card.Body>
+          </Card>
+          </div>
+        </div> : ''
+      }
+
+      {
+        isLogin ? <LogoutButton getIsLogout={setIsLogout} /> : <LoginButton getIsLogin={setIsLogin} />
+      }
+
     </div>
   );
 }
