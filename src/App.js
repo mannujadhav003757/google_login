@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { gapi } from 'gapi-script'
 import Card from 'react-bootstrap/Card';
 
-const clientId = '286213407093-s07fd7a3l9hoddsakohpi73nl1k1pbsp.apps.googleusercontent.com'
+const clientId = '454333614232-ltuf6u4gaqi243ljda5c61sncgj9ce5p.apps.googleusercontent.com'
 
 function App() {
   const [isLogin, setLogin] = useState(false);
@@ -19,7 +19,8 @@ function App() {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: ""
+        scope: "",
+        ux_mode: 'redirect'
       })
     }
 
@@ -46,7 +47,7 @@ function App() {
 
       {
         isLogin ? <div id="userData">
-          <h1 className='mb-4'>Example of Google Login</h1>
+          <h1 className='mb-4'>Example of Google Login</h1> 
           <div className='container mb-2' style={{marginLeft:'35%'}}>
           <Card style={{ width: '20rem',height:'15rem',backgroundColor:'grey' }}>
             <Card.Body className="mt-5">

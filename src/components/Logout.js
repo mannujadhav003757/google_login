@@ -1,6 +1,6 @@
 import { GoogleLogout } from 'react-google-login'
 
-const clientId = '286213407093-s07fd7a3l9hoddsakohpi73nl1k1pbsp.apps.googleusercontent.com'
+const clientId = '454333614232-ltuf6u4gaqi243ljda5c61sncgj9ce5p.apps.googleusercontent.com'
 
 function Logout(props) {
 

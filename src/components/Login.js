@@ -1,10 +1,11 @@
 import { GoogleLogin } from 'react-google-login'
 
-const clientId = '286213407093-s07fd7a3l9hoddsakohpi73nl1k1pbsp.apps.googleusercontent.com'
+const clientId = '454333614232-cv8b9gh4afkdhfpvq6ra5rgfs66qisi9.apps.googleusercontent.com'
 
 function Login(props) {
 
     const onSuccess = (res)  => {
+        //e.preventDefault()
         console.log("********",res)
         console.log('LOGIN SUCCESS! Current User', res.profileObj);
 
@@ -24,7 +25,7 @@ function Login(props) {
 
     return (
         <div id="signInButton">
-            <h1>Please Sign in with Google</h1>
+            <h1>Please Sign in with Google</h1> 
             <GoogleLogin
                 className='mt-4'
                 clientId={clientId}
