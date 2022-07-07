@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { gapi } from 'gapi-script'
 import Card from 'react-bootstrap/Card';
 
-const clientId = '454333614232-ltuf6u4gaqi243ljda5c61sncgj9ce5p.apps.googleusercontent.com'
+const clientId = '349925464986-6gqlvd5unbrne7cjrjimfubt4of7a7i0.apps.googleusercontent.com'
 
 function App() {
   const [isLogin, setLogin] = useState(false);
@@ -17,15 +17,16 @@ function App() {
 
   useEffect(() => {
     function start() {
-      gapi.client.init({
+      gapi.client.init('client:auth2',{
         clientId: clientId,
         scope: "",
-        ux_mode: 'redirect'
+         ux_mode: 'redirect',
+        //  discoveryDocs:'https://developers.google.com/discovery/v1/using'
       })
     }
 
     gapi.load('client:auth2', start)
-  })
+  },[])
 
   const setIsLogin = (data) => {
 
